@@ -11,7 +11,8 @@ suite('Initr', function() {
 		cli = require('cli');
 		childProcess = require('child_process');
 		asyncblock = require('asyncblock');
-		initr = Initr(fs, cli, childProcess, asyncblock);
+		sys = require('sys');
+		initr = Initr(fs, cli, childProcess, asyncblock, sys);
 
 		mockJSON = {
 			"commands": [

@@ -31,7 +31,11 @@ if (argValues['help']) {
 var fs = require('fs');
 var cli = require('cli');
 var childProcess = require('child_process');
+var asyncblock = require('asyncblock');
+var sys = require('sys');
 var Initr = require('../lib/initr.js');
 
-var initr = Initr(fs, cli, childProcess);
+var initr = Initr(fs, cli, childProcess, asyncblock, sys);
 var configOptions = initr.getConfigOptions(argValues['configPath']);
+
+initr.runFromOptions();
