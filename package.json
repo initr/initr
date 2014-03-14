@@ -1,0 +1,17 @@
+{
+  "name": "initr",
+  "version": "0.0.0",
+  "description": "A helpful command to initialize your projects!",
+  "main": "lib/initr.coffee",
+  "bin": "bin/initr",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "project",
+    "startup",
+    "init"
+  ],
+  "author": "Ryan Tablada",
+  "license": "MIT"
+}
