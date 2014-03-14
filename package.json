@@ -6,7 +6,8 @@
   "bin": "bin/initr",
   "dependencies": {
     "yargs": "~1.2",
-    "cli": "~0.4"
+    "cli": "~0.4",
+    "asyncblock": "*"
   },
   "devDependencies": {
     "mocha": "*",
