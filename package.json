@@ -8,6 +8,11 @@
     "yargs": "~1.2",
     "cli": "~0.4"
   },
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*",
+    "mockery": "*"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
