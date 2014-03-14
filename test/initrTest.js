@@ -28,25 +28,30 @@ suite('Initr', function() {
 	});
 
 	suite('getConfigOptions()', function() {
-		test('should return object from default JSON file', function() {
-			var fsMock = mock(fs);
+		var fsMock;
+
+		setup(function() {
+			fsMock = mock(fs);
 			fsMock.expects('existsSync').once().returns(true);
+		});
+
+		test('should return object from default JSON file', function() {
 			fsMock.expects('readFileSync').once().withArgs('initr.json').returns(JSON.stringify(mockJSON));
 
 			options = initr.getConfigOptions();
 
 			expect(JSON.stringify(options)).equal(JSON.stringify(mockJSON));
-			fsMock.verify();
 		});
 
 		test('should return object from specified JSON file', function() {
-			var fsMock = mock(fs);
-			fsMock.expects('existsSync').once().returns(true);
 			fsMock.expects('readFileSync').once().withArgs('testfile.json').returns(JSON.stringify(mockJSON));
 
 			options = initr.getConfigOptions('testfile.json');
 
 			expect(JSON.stringify(options)).equal(JSON.stringify(mockJSON));
+		});
+
+		teardown(function() {
 			fsMock.verify();
 		});
 	});
@@ -63,32 +68,28 @@ suite('Initr', function() {
 	});
 
 	suite('runScript()', function() {
-		var fsMock;
+		var fsMock, childProcessMock;
 
 		setup(function() {
 			fsMock = mock(fs);
-			fsMock.expects('existsSync').once().returns(true);
+			fsMock.expects('existsSync').returns(true);
+			childProcessMock = mock(childProcess);
 		});
 
 		test('should run sh on local file', function() {
-			var childProcessMock = mock(childProcess);
 			childProcessMock.expects('exec').withArgs('sh ' + mockJSON.scripts[0]).once().returns(true);
 
 			initr.runScript(mockJSON.scripts[0]);
-
-			childProcessMock.verify();
 		});
 
 		test('should curl if file is http or https', function() {
-			var childProcessMock = mock(childProcess);
 			childProcessMock.expects('exec').withArgs('curl ' + mockJSON.scripts[1] + ' | sh').once().returns(true);
 
 			initr.runScript(mockJSON.scripts[1]);
-
-			childProcessMock.verify();
 		});
 
 		teardown(function() {
+			childProcessMock.verify();
 			fsMock.restore();
 		});
 	});
