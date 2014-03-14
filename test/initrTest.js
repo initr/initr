@@ -94,4 +94,30 @@ suite('Initr', function() {
 		});
 	});
 
+	suite('runFromOptions()', function() {
+		var initrMock;
+
+		setup(function() {
+			initrMock = mock(initr);
+		});
+
+		test('should call runScript() for each script', function() {
+			var testFilePath = 'file.md';
+			initrMock.expects('runScript').once().withArgs(testFilePath).returns(true);
+
+			initr.runFromOptions({scripts: [testFilePath]});
+		});
+
+		test('should call runCommand() for each script', function() {
+			var testCommand = 'echo \'command\'';
+			initrMock.expects('runCommand').once().withArgs(testCommand).returns(true);
+
+			initr.runFromOptions({commands: [testCommand]});
+		});
+
+		teardown(function() {
+			initrMock.verify();
+		});
+	});
+
 });
