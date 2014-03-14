@@ -34,7 +34,7 @@ describe('Initr', function() {
 
 			options = initr.getConfigOptions();
 
-			assert.equal(mockJSON, options);
+			expect(JSON.stringify(options)).equal(JSON.stringify(mockJSON));
 			fsMock.verify();
 		});
 	});
