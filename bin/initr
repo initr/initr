@@ -3,9 +3,34 @@
 
 "use strict";
 
+// Get the arguments for the command
+var usage =
+"Initr - Ryan Tablada\n\
+--------------------\n\
+$0 [arguments]\n\
+";
+
+var Yarg = require('yargs').usage(usage, {
+	'configPath': {
+		description: "Defines what init file to use for configuration.",
+	},
+	'help': {
+		description: "Gets help for this command. It's like inception...",
+		alias: 'h'
+	}
+}).wrap(80);
+var argValues = Yarg.argv;
+
+// Fire Help Screen on help argument
+if (argValues['help']) {
+	console.log(Yarg.help());
+
+	return null;
+}
+
 var fs = require('fs');
 var childProcess = require('child_process');
 var Initr = require('../lib/initr.js');
 
 var initr = Initr(fs, childProcess);
-initr.getConfigOptions();
+var configOptions = initr.getConfigOptions(argValues['configPath']);

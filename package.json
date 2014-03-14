@@ -4,6 +4,9 @@
   "description": "A helpful command to initialize your projects!",
   "main": "lib/initr.coffee",
   "bin": "bin/initr",
+  "dependencies": {
+    "yargs": "~1.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
