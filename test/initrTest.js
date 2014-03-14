@@ -62,4 +62,35 @@ suite('Initr', function() {
 		});
 	});
 
+	suite('runScript()', function() {
+		var fsMock;
+
+		setup(function() {
+			fsMock = mock(fs);
+			fsMock.expects('existsSync').once().returns(true);
+		});
+
+		test('should run sh on local file', function() {
+			var childProcessMock = mock(childProcess);
+			childProcessMock.expects('exec').withArgs('sh ' + mockJSON.scripts[0]).once().returns(true);
+
+			initr.runScript(mockJSON.scripts[0]);
+
+			childProcessMock.verify();
+		});
+
+		test('should curl if file is http or https', function() {
+			var childProcessMock = mock(childProcess);
+			childProcessMock.expects('exec').withArgs('curl ' + mockJSON.scripts[1] + ' | sh').once().returns(true);
+
+			initr.runScript(mockJSON.scripts[1]);
+
+			childProcessMock.verify();
+		});
+
+		teardown(function() {
+			fsMock.restore();
+		});
+	});
+
 });
