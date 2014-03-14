@@ -32,6 +32,12 @@ The file looks like this:
 
 ```
 
+Installing Locally
+===
+
+If you are developing on initr, you will likely want to run the development version of initr for manual testing.
+To do this, from your cloned initr directory, just run `npm link` and you will now have a global symlink to your development version of initr.
+
 Running the Tests.
 ===
 
