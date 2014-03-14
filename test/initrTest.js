@@ -78,7 +78,7 @@ suite('Initr', function() {
 		});
 
 		test('should run sh on local file', function() {
-			childProcessMock.expects('exec').withArgs('sh ' + mockJSON.scripts[0]).once().returns(true);
+			childProcessMock.expects('execFile').withArgs('sh ' + mockJSON.scripts[0]).once().returns(true);
 
 			initr.runScript(mockJSON.scripts[0]);
 		});
