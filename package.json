@@ -4,6 +4,11 @@
   "description": "A helpful command to initialize your projects!",
   "main": "lib/initr.coffee",
   "bin": "bin/initr",
+  "homepage": "http://initr.io",
+  "repository": {
+    "type": "git",
+    "url": " https://github.com/initr/initr"
+  },
   "dependencies": {
     "yargs": "~1.2",
     "cli": "~0.4",
