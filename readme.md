@@ -1,7 +1,7 @@
 Initr
 ---
 
-![https://travis-ci.org/initr/initr.png](https://travis-ci.org/initr/initr/builds)
+[![Build Status](https://travis-ci.org/initr/initr.png?branch=master)](https://travis-ci.org/initr/initr)
 
 Installing initr
 ===
