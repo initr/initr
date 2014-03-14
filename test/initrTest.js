@@ -30,9 +30,11 @@ describe('Initr', function() {
 		it('should return standard json parsed config file', function() {
 			fsMock = mock(fs);
 			fsMock.expects('existsSync').once().returns(true);
-			fsMock.expects('readFileSync').once().returns(JSON.stringify(mockJSON));
+			fsMock.expects('readFileSync').once().withArgs('initr.json').returns(JSON.stringify(mockJSON));
 
 			options = initr.getConfigOptions();
+
+			assert.equal(mockJSON, options);
 			fsMock.verify();
 		});
 	});
