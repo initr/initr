@@ -1,6 +1,8 @@
 Initr
 ---
 
+![https://travis-ci.org/initr/initr.png](https://travis-ci.org/initr/initr/builds)
+
 Installing initr
 ===
 
