@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 var sinon = require('sinon');
 var mock = sinon.mock;
 
-describe('Initr', function() {
+suite('Initr', function() {
 	var Initr, fs, cli, childProcess, initr, mockJSON;
 
 	setup(function() {
@@ -26,13 +26,24 @@ describe('Initr', function() {
 		};
 	});
 
-	describe('getConfigOptions()', function() {
-		it('should return standard json parsed config file', function() {
+	suite('getConfigOptions()', function() {
+		test('should return object from default JSON file', function() {
 			fsMock = mock(fs);
 			fsMock.expects('existsSync').once().returns(true);
 			fsMock.expects('readFileSync').once().withArgs('initr.json').returns(JSON.stringify(mockJSON));
 
 			options = initr.getConfigOptions();
+
+			expect(JSON.stringify(options)).equal(JSON.stringify(mockJSON));
+			fsMock.verify();
+		});
+
+		test('should return object from specified JSON file', function() {
+			fsMock = mock(fs);
+			fsMock.expects('existsSync').once().returns(true);
+			fsMock.expects('readFileSync').once().withArgs('testfile.json').returns(JSON.stringify(mockJSON));
+
+			options = initr.getConfigOptions('testfile.json');
 
 			expect(JSON.stringify(options)).equal(JSON.stringify(mockJSON));
 			fsMock.verify();
