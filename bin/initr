@@ -29,8 +29,9 @@ if (argValues['help']) {
 }
 
 var fs = require('fs');
+var cli = require('cli');
 var childProcess = require('child_process');
 var Initr = require('../lib/initr.js');
 
-var initr = Initr(fs, childProcess);
+var initr = Initr(fs, cli, childProcess);
 var configOptions = initr.getConfigOptions(argValues['configPath']);
