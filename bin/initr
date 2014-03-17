@@ -17,6 +17,9 @@ var Yarg = require('yargs').usage(usage, {
 	'help': {
 		description: "Gets help for this command. It's like inception...",
 		alias: 'h'
+	},
+	'apiHost': {
+		description: "URL of API. Defaults to http://initr.io"
 	}
 }).wrap(80);
 var argValues = Yarg.argv;
@@ -33,9 +36,16 @@ var cli = require('cli');
 var childProcess = require('child_process');
 var asyncblock = require('asyncblock');
 var sys = require('sys');
+var http = require('httpsync');
+
+var ApiBroker = require('../lib/apiBroker.js');
 var Initr = require('../lib/initr.js');
 
-var initr = Initr(fs, cli, childProcess, asyncblock, sys);
+var broker = ApiBroker(http);
+var initr = Initr(fs, cli, childProcess, asyncblock, sys, broker);
+var hostname = argValues['apiHost'] ? argValues['apiHost'] : 'http://initr.io';
+
+broker.setHostname(hostname);
 var configOptions = initr.getConfigOptions(argValues['configPath']);
 
 initr.runFromOptions();

@@ -10,9 +10,11 @@
     "url": " https://github.com/initr/initr"
   },
   "dependencies": {
+    "jquery": "~2",
     "yargs": "~1.2",
     "cli": "~0.4",
-    "asyncblock": "*"
+    "asyncblock": "*",
+    "httpsync": "*"
   },
   "devDependencies": {
     "mocha": "*",
