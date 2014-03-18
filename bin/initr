@@ -41,7 +41,7 @@ var http = require('httpsync');
 var ApiBroker = require('../lib/apiBroker.js');
 var Initr = require('../lib/initr.js');
 
-var broker = ApiBroker(http);
+var broker = ApiBroker(http, cli);
 var initr = Initr(fs, cli, childProcess, asyncblock, sys, broker);
 var hostname = argValues['apiHost'] ? argValues['apiHost'] : 'http://initr.io';
 
